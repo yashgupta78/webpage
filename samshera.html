@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Analytics - AI Solutions & Market Research</title>
+    <style>
+        /* --- Google Font --- */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        /* --- CSS Variables (Theme Colors) --- */
+        :root {
+            --primary-color: #0052cc; /* Professional Blue */
+            --secondary-color: #012970; /* Dark Navy */
+            --accent-color: #41cfd9; /* Bright Cyan/Teal */
+            --text-dark: #333;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --bg-white: #ffffff;
+            --border-color: #dee2e6;
+        }
+
+        /* --- Global Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.7;
+            background-color: var(--bg-white);
+        }
+
+        /* --- Utility Classes --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--bg-white);
+        }
+
+        .btn-primary:hover {
+            background-color: #0041a3;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: var(--bg-white);
+        }
+
+        /* --- Header & Navigation --- */
+        .header {
+            background-color: var(--bg-white);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 5px;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* --- Hero Section --- */
+        #home {
+            background: linear-gradient(rgba(1, 41, 112, 0.8), rgba(1, 41, 112, 0.8)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80') no-repeat center center/cover;
+            color: var(--bg-white);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px; /* Offset for fixed header */
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .hero-content .btn {
+            margin: 0 10px;
+        }
+
+        /* --- Services Section --- */
+        #services {
+            background-color: var(--bg-light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background-color: var(--bg-white);
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 82, 204, 0.1);
+        }
+
+        .service-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .service-card strong {
+            color: var(--primary-color);
+        }
+
+        /* --- Reports Section --- */
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .report-card {
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .report-card h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .report-card p {
+            flex-grow: 1;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+        
+        .report-actions .btn {
+            padding: 8px 20px;
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+
+        /* --- Case Studies Section --- */
+        #case-studies {
+             background-color: var(--bg-light);
+        }
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        .case-study-card {
+            background: var(--bg-white);
+            border-left: 5px solid var(--primary-color);
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border-radius: 5px;
+        }
+        .case-study-card h3 {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+        .client-info {
+            font-weight: 600;
+            color: var(--text-light);
+        }
+        .result {
+            background-color: #e6f7ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        /* --- Careers Section --- */
+        .careers-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        .career-column h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        .job-listing {
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+        }
+        .job-listing:last-child {
+            border-bottom: none;
+        }
+        .job-listing h4 {
+            color: var(--primary-color);
+        }
+        
+        /* --- Footer --- */
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--bg-white);
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none; 
+            }
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            .case-studies-grid, .careers-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <nav class="navbar container">
+            <a href="#home" class="logo">Nexus Analytics</a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#reports">Reports Hub</a></li>
+                <li><a href="#case-studies">Case Studies</a></li>
+                <li><a href="#careers">Careers</a></li>
+                <li><a href="mailto:contact@nexusanalytics.com" class="btn btn-primary">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section id="home">
+            <div class="hero-content container">
+                <h1>Actionable Insights. Accelerated Growth.</h1>
+                <p>We fuse deep market intelligence with custom AI solutions to sharpen your competitive edge and build future-ready talent.</p>
+                <div>
+                    <a href="#services" class="btn btn-primary">Explore Our Solutions</a>
+                    <a href="#reports" class="btn btn-secondary">Browse Sample Reports</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Core Business Pillars</h2>
+                    <p>We provide an integrated approach to business transformation, combining data, technology, and talent.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>Market Research</h3>
+                        <p><strong>Strategic Decisions, Data-Driven.</strong> Access granular, industry-specific reports to navigate market complexities with confidence. Instantly download samples to see our value firsthand.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>AI & Automation</h3>
+                        <p><strong>Optimize Your Value Chain.</strong> We build bespoke AI accelerators that directly target your biggest challenges, delivering measurable savings in cost, effort, and time.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Talent Accelerator</h3>
+                        <p><strong>Cultivating Industry-Ready Professionals.</strong> Our immersive program bridges the gap between academia and the corporate world, equipping graduates to succeed from day one.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reports">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Reports Hub</h2>
+                    <p>Your knowledge center. Instantly access sample versions of our latest research to make informed decisions.</p>
+                </div>
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <h4>The Future of AI in Retail: 2026 Forecast</h4>
+                        <p>An in-depth analysis of AI adoption, key players, and investment trends shaping the retail sector.</p>
+                        <div class="report-actions">
+                            <a href="#" class="btn btn-secondary">Download Sample</a>
+                            <a href="mailto:sales@nexusanalytics.com" class="btn btn-primary">Request Full Report</a>
+                        </div>
+                    </div>
+                    <div class="report-card">
+                        <h4>Cybersecurity Trends in Banking</h4>
+                        <p>Explore emerging threats and the defensive technologies financial institutions are adopting to secure assets.</p>
+                        <div class="report-actions">
+                            <a href="#" class="btn btn-secondary">Download Sample</a>
+                            <a href="mailto:sales@nexusanalytics.com" class="btn btn-primary">Request Full Report</a>
+                        </div>
+                    </div>
+                    <div class="report-card">
+                        <h4>Supply Chain Automation Impact Analysis</h4>
+                        <p>A comprehensive look at how automation is creating resilient and efficient supply chains post-pandemic.</p>
+                        <div class="report-actions">
+                            <a href="#" class="btn btn-secondary">Download Sample</a>
+                            <a href="mailto:sales@nexusanalytics.com" class="btn btn-primary">Request Full Report</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="case-studies">
+             <div class="container">
+                <div class="section-header">
+                    <h2>Proven Impact. Real Stories.</h2>
+                    <p>We partner with organizations to deliver measurable results. See how we've helped businesses like yours.</p>
+                </div>
+                <div class="case-studies-grid">
+                    <div class="case-study-card">
+                        <p class="client-info">Global FinTech Leader</p>
+                        <h3>The Challenge</h3>
+                        <p>Needed to reduce manual data entry from invoices by 80% to free up the finance team for strategic analysis.</p>
+                        <h3>Our Solution</h3>
+                        <p>Deployed a custom AI-powered document processing tool that extracts, validates, and inputs invoice data automatically.</p>
+                        <div class="result">
+                            <strong>The Result:</strong> 92% automation achieved, saving over 1,500 man-hours per month.
+                        </div>
+                    </div>
+                    <div class="case-study-card">
+                        <p class="client-info">E-commerce Marketplace</p>
+                        <h3>The Challenge</h3>
+                        <p>Customer support tickets were overwhelming the team, leading to slow response times and poor satisfaction scores.</p>
+                        <h3>Our Solution</h3>
+                        <p>Built a custom GenAI chatbot to handle 75% of Tier-1 inquiries, integrated with their knowledge base.</p>
+                        <div class="result">
+                            <strong>The Result:</strong> 60% reduction in support costs and a 45% improvement in customer satisfaction.
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <section id="careers">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Build The Future With Us</h2>
+                    <p>We're always looking for passionate talent, whether you're starting your career or are a seasoned professional.</p>
+                </div>
+                <div class="careers-container">
+                    <div class="career-column">
+                        <h3>Talent Accelerator Program</h3>
+                        <p>Our internship is more than a program—it's a real-world corporate ecosystem. We provide the mentorship, infrastructure, and hands-on projects you need to transform your degree into a high-impact career.</p>
+                        <br>
+                        <a href="mailto:internships@nexusanalytics.com" class="btn btn-primary">Apply for the Next Cohort</a>
+                    </div>
+                    <div class="career-column">
+                        <h3>Open Positions</h3>
+                        <div class="job-listing">
+                            <h4>Senior AI Engineer</h4>
+                            <p>Location: Mumbai, India</p>
+                        </div>
+                        <div class="job-listing">
+                            <h4>Market Research Analyst</h4>
+                            <p>Location: Remote</p>
+                        </div>
+                        <div class="job-listing">
+                            <h4>Business Development Manager</h4>
+                            <p>Location: Mumbai, India</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Nexus Analytics. All Rights Reserved.</p>
+            <p>Your Partner in Data-Driven Growth.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
